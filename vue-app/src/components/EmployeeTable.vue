@@ -45,13 +45,12 @@ export default {
     };
   },
   methods: {
-    editMode(id) {
-      this.editing = id;
+    editMode(employee) {
+      this.cachedEmployee = Object.assign({}, employee);
+      this.editing = employee.id;
     },
-
-    editEmployee(employee) {
-      if (employee.name === "" || employee.email === "") return;
-      this.$emit("edit:employee", employee.id, employee);
+    cancelEdit(employee) {
+      Object.assign(employee, this.cachedEmployee);
       this.editing = null;
     }
   }
